@@ -21,3 +21,6 @@
 ## Constraints
 - Limit recipe to stir-fry
 - Focus more on cooking than organizing the cooking area or detecting ingredients
+
+## Risk
+- Voice detection doesn't work well during cooking, especially frying
