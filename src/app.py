@@ -1,16 +1,17 @@
 import io
 import pyaudio
-from piper import Piper
+from piper import PiperVoice
 
 def main():
     # Initialize Piper
-    model_path = "path_to_your_model_directory"
-    piper = Piper(model_path=model_path)
+    model_path = './models/en_US-lessac-medium.onnx'
+    config_path = './models/en_US-lessac-medium.onnx.json'
+    piper = PiperVoice.load(model_path, config_path=config_path)
 
 
     # Convert text to audio
     text = "Hello! I'm hungry and angry"
-    audio_data = piper.tts(text)
+    audio_data = piper.synthesize_stream_raw(text)
 
     # Initialize PyAudio
     p = pyaudio.PyAudio()
