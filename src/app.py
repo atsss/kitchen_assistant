@@ -3,33 +3,32 @@ import pyaudio
 from piper import Piper
 
 def main():
-    # Piperの初期化
+    # Initialize Piper
     model_path = "path_to_your_model_directory"
     piper = Piper(model_path=model_path)
 
-    # 読み上げるテキスト
-    text = "こんにちは、これはテキストから音声への変換のデモです。"
 
-    # テキストを音声に変換
+    # Convert text to audio
+    text = "Hello! I'm hungry and angry"
     audio_data = piper.tts(text)
 
-    # PyAudioの設定
+    # Initialize PyAudio
     p = pyaudio.PyAudio()
 
-    # ストリームを開く
+    # Open audio stream
     stream = p.open(format=pyaudio.paInt16,
                     channels=1,
                     rate=22050,
                     output=True)
 
-    # 音声データをストリームに書き込んで再生
+    # Play audio as wirting audio data to stream
     stream.write(audio_data)
 
-    # ストリームを閉じる
+    # Close stream
     stream.stop_stream()
     stream.close()
 
-    # PyAudioの終了処理
+    # Close Pyaudio
     p.terminate()
 
 if __name__ == "__main__":
