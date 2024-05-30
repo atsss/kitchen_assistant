@@ -8,10 +8,6 @@ def main():
     config_path = os.path.join(os.path.dirname(__file__), 'models', 'en_US-lessac-medium.onnx.json')
     piper = PiperVoice.load(model_path, config_path=config_path)
 
-    # Convert text to audio
-    text = "Hello! I'm hungry and angry"
-    audio_data = piper.synthesize_stream_raw(text)
-
     # Initialize PyAudio
     p = pyaudio.PyAudio()
 
@@ -21,8 +17,11 @@ def main():
                     rate=22050,
                     output=True)
 
-    # Play audio as wirting audio data to stream
-    stream.write(audio_data)
+    # Convert text to audio
+    text = "Hello! I'm hungry and angry"
+    for audio_data in piper.synthesize_stream_raw(text):
+        # Play audio as wirting audio data to stream
+        stream.write(audio_data)
 
     # Close stream
     stream.stop_stream()
