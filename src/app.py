@@ -35,9 +35,10 @@ def main():
         while True:
             sleep(0.1)
             pass
-        except KeyboardInterrupt:
-          print("Finished")
+    except KeyboardInterrupt:
+        print("Finished")
 
+    print("Closing")
     # Close stream
     stream.stop_stream()
     stream.close()
