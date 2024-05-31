@@ -1,6 +1,11 @@
 import os
 import pyaudio
 from piper import PiperVoice
+from gpiozero import Button
+from time import sleep
+
+BUTTON_PIN = 17
+button = Button(BUTTON_PIN)
 
 def main():
     # Initialize Piper
@@ -18,10 +23,20 @@ def main():
                     output=True)
 
     # Convert text to audio
-    text = "Hello! I'm hungry and angry"
-    for audio_data in piper.synthesize_stream_raw(text):
-        # Play audio as wirting audio data to stream
-        stream.write(audio_data)
+    def speak():
+        text = "Hello! I'm hungry and angry"
+        for audio_data in piper.synthesize_stream_raw(text):
+            # Play audio as wirting audio data to stream
+            stream.write(audio_data)
+
+    button.when_pressed = speak
+
+    try:
+        while True:
+            sleep(0.1)
+            pass
+        except KeyboardInterrupt:
+          print("Finished")
 
     # Close stream
     stream.stop_stream()

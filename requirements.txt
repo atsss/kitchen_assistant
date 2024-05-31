@@ -1,2 +1,3 @@
 pyaudio
 piper-tts
+gpiozero
