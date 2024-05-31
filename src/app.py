@@ -24,6 +24,7 @@ def main():
 
     # Convert text to audio
     def speak():
+        print('Speaking')
         text = "Hello! I'm hungry and angry"
         for audio_data in piper.synthesize_stream_raw(text):
             # Play audio as wirting audio data to stream
@@ -33,6 +34,7 @@ def main():
 
     try:
         while True:
+            print('.')
             sleep(0.1)
             pass
     except KeyboardInterrupt:
