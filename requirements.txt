@@ -1,3 +1,4 @@
-pyaudio
-piper-tts
-gpiozero
+pyaudio==0.2.14
+piper-tts==1.2.0
+gpiozero==2.0.1
+RPi.GPIO==0.7.1
