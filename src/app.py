@@ -34,7 +34,6 @@ def main():
 
     try:
         while True:
-            print('.')
             sleep(0.1)
             pass
     except KeyboardInterrupt:
