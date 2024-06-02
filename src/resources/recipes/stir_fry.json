@@ -1,0 +1,28 @@
+{
+  [
+    {
+      "title": "Heat the Pan",
+      "instruction": "Heat a large skillet or wok over medium-high heat, then add vegetable oil."
+    },
+    {
+      "title": "Cook the Aromatics",
+      "instruction": "Sauté minced garlic and sliced onion for 1-2 minutes until fragrant and the onions start to soften."
+    },
+    {
+      "title": "Add the Vegetables",
+      "instruction": "Add sliced bell pepper, julienned carrot, sliced zucchini, broccoli florets, and snap peas to the pan. Stir-fry for about 5-7 minutes until the vegetables are tender but still crisp."
+    },
+    {
+      "title": "Season the Vegetables",
+      "instruction": "Pour in soy sauce and optional oyster sauce, stir well to coat all the vegetables evenly. Drizzle with sesame oil, and season with salt and pepper to taste."
+    },
+    {
+      "title": "Optional Thickening",
+      "instruction": "If you prefer a thicker sauce, mix cornstarch with water to create a slurry. Pour the slurry into the pan and stir well until the sauce thickens slightly."
+    },
+    {
+      "title": "Serve",
+      "instruction": "Once the vegetables are cooked to your desired tenderness and the sauce is well-mixed, remove the pan from heat and serve the vegetable stir-fry hot."
+    }
+  ]
+}
