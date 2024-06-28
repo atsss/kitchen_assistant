@@ -37,12 +37,15 @@ class MQTTClient(object):
         try:
             if self._client is None:
                 self._client = paho.Client(client_id=self._client_id, protocol=paho.MQTTv5)
+                logger.debug("Initialized MQTT client")
                 self._client.username_pw_set(self._username, self._password)
+                logger.debug("Authorized with user name and password")
                 self._client.on_connect = self._on_connect
                 self._client.on_disconnect = self._on_disconnect
                 self._client.on_subscribe = self._on_subscribe
                 self._client.on_message = self._on_message
                 rc = self._client.connect(self._address, self._port, keepalive=60)
+                logger.debug("Connected")
             else:
                 self._client.reconnect()
             return True, {}
