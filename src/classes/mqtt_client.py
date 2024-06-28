@@ -12,6 +12,7 @@ MQTT_BROKER_URL = ''
 MQTT_BROKER_PORT = ''
 DEVICE_MQTT_BROKER_USERNAME = ''
 DEVICE_MQTT_BROKER_PASSWORD = ''
+CLIENT_ID = 'kitchen-hub'
 
 class MQTTClient(object):
     def __init__(self,
@@ -19,7 +20,7 @@ class MQTTClient(object):
                  port: int = MQTT_BROKER_PORT,
                  username: str = DEVICE_MQTT_BROKER_USERNAME,
                  password: str = DEVICE_MQTT_BROKER_PASSWORD,
-                 device_uuid: str = DEVICE_UUID
+                 client_id: str = CLIENT_ID
                  ) -> None:
 
         # Connection
@@ -30,7 +31,7 @@ class MQTTClient(object):
 
         # Client
         self._client: ty.Optional['mqtt.Client'] = None
-        self._client_id: str = device_uuid
+        self._client_id: str = client_id
         self._connected: bool = False
 
         # Notifications
