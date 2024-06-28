@@ -102,3 +102,8 @@ class MQTTClient(object):
             self._client.disconnect()
             self._client.stop_loop()
             logger.debug(f"Stopped App MQTT Client")
+
+    def publish(self, message: str, topic: str) -> None:
+        logger.debug(f"Will publish {message[:20]} to {topic}")
+        self._client.publish(topic, payload="hot", qos=0)
+        logger.debug(f"Published {message[:20]} to {topic}")
