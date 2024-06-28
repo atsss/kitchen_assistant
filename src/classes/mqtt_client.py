@@ -62,8 +62,8 @@ class MQTTClient(object):
 
     def _on_connect(self, client, userdata, flags, rc, properties=None):
         # This will be called once the client connects
-        if rc == 0:
-            logger.success(f"Device message client connected with result code '{str(rc)}'")
+        if int(rc) == 0:
+            logger.success(f"Device message client connected with result code '{rc}'")
             # Subscribe here!
             # TODO: Do we need to subscribe every time we connect?
             client.subscribe(self.TOPIC_CONFIGURE, qos=1)
