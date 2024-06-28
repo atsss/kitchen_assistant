@@ -36,7 +36,7 @@ class MQTTClient(object):
     def _connect(self) -> ty.Tuple[bool, ty.Dict]:
         try:
             if self._client is None:
-                self._client = paho.Client(client_id=self._client_id, protocol=paho.MQTTv5, clean_session=False)
+                self._client = paho.Client(client_id=self._client_id, protocol=paho.MQTTv5)
                 self._client.username_pw_set(self._username, self._password)
                 self._client.on_connect = self._on_connect
                 self._client.on_disconnect = self._on_disconnect
