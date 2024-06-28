@@ -1,4 +1,3 @@
-import threading
 import typing as ty
 
 from loguru import logger
@@ -33,9 +32,6 @@ class MQTTClient(object):
         self._client: ty.Optional['mqtt.Client'] = None
         self._client_id: str = client_id
         self._connected: bool = False
-
-        # Notifications
-        self._configuration_changed: 'threading.Condition' = threading.Condition()
 
     def _connect(self) -> ty.Tuple[bool, ty.Dict]:
         try:
