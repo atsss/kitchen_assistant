@@ -41,9 +41,13 @@ class MQTTClient(object):
                 self._client.username_pw_set(self._username, self._password)
                 logger.debug("Authorized with user name and password")
                 self._client.on_connect = self._on_connect
+                logger.debug("Set on_connect")
                 self._client.on_disconnect = self._on_disconnect
+                logger.debug("Set on_disconnect")
                 self._client.on_subscribe = self._on_subscribe
+                logger.debug("Set on_subscribe")
                 self._client.on_message = self._on_message
+                logger.debug("Set on_message")
                 rc = self._client.connect(self._address, self._port, keepalive=60)
                 logger.debug("Connected")
             else:
@@ -62,8 +66,8 @@ class MQTTClient(object):
 
     def _on_connect(self, client, userdata, flags, rc, properties=None):
         # This will be called once the client connects
-        if int(rc) == 0:
-            logger.success(f"Device message client connected with result code '{rc}'")
+        if rc == 0:
+            logger.success(f"Device message client connected with result code '{str(rc)}'")
             # Subscribe here!
             # TODO: Do we need to subscribe every time we connect?
             client.subscribe(self.TOPIC_CONFIGURE, qos=1)
