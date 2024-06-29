@@ -93,10 +93,12 @@ class MQTTClient(object):
             logger.debug(f"Started App MQTT Client")
         else:
             logger.error(f"Can't start MQTT client")
+        self._client.loop_start()
 
     def stop(self) -> None:
         if self._client is not None:
             self._client.disconnect()
+            self._client.loop_stop()
             logger.debug(f"Stopped App MQTT Client")
 
     def publish(self, message: str, topic: str) -> None:
