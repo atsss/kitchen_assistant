@@ -21,7 +21,7 @@ class MQTTClient(object):
                  username: str = DEVICE_MQTT_BROKER_USERNAME,
                  password: str = DEVICE_MQTT_BROKER_PASSWORD,
                  client_id: str = CLIENT_ID,
-                 userdata: set,
+                 userdata: set = set(),
                  ) -> None:
 
         # Connection
