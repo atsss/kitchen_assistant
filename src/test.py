@@ -11,7 +11,7 @@ def main():
         logger.debug(len(byte_array))
 
         unacked_publish = set()
-        client = MQTTClient(userdate=unacked_publish)
+        client = MQTTClient(userdata=unacked_publish)
         client.start()
 
         msg_info = client.publish(topic='Test', message=byte_array)
