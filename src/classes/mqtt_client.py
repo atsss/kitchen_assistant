@@ -20,7 +20,8 @@ class MQTTClient(object):
                  port: int = MQTT_BROKER_PORT,
                  username: str = DEVICE_MQTT_BROKER_USERNAME,
                  password: str = DEVICE_MQTT_BROKER_PASSWORD,
-                 client_id: str = CLIENT_ID
+                 client_id: str = CLIENT_ID,
+                 userdata: set,
                  ) -> None:
 
         # Connection
@@ -33,12 +34,14 @@ class MQTTClient(object):
         self._client: ty.Optional['mqtt.Client'] = None
         self._client_id: str = client_id
         self._connected: bool = False
+        self._userdata = userdata
 
     def _connect(self) -> ty.Tuple[bool, ty.Dict]:
         try:
             if self._client is None:
                 self._client = paho.Client(client_id=self._client_id, protocol=MQTTProtocolVersion.MQTTv5)
                 self._client.username_pw_set(self._username, self._password)
+                self._client.user_data_set(self._userdata)
                 self._client.on_connect = self._on_connect
                 self._client.on_disconnect = self._on_disconnect
                 self._client.on_publish = self._on_publish

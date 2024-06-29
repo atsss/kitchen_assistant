@@ -10,10 +10,10 @@ def main():
             byte_array = bytearray(image_file.read())
         logger.debug(len(byte_array))
 
-        client = MQTTClient()
+        unacked_publish = set()
+        client = MQTTClient(userdate=unacked_publish)
         client.start()
 
-        unacked_publish = set()
         msg_info = client.publish(topic='Test', message=byte_array)
         unacked_publish.add(msg_info.mid)
 
