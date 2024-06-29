@@ -115,7 +115,6 @@ class MQTTClient(object):
             logger.debug(f"Started App MQTT Client")
         else:
             logger.error(f"Can't start MQTT client")
-        self._client.loop_start()
 
     def stop(self) -> None:
         if self._client is not None:
