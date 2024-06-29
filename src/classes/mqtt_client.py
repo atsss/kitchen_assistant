@@ -73,7 +73,7 @@ class MQTTClient(object):
     def _on_disconnect(self, client, userdata, rc, properties=None):
         self._connected = False
 
-    def _on_publish(self, client, userdata, mid, reason_code, properties=None):
+    def _on_publish(self, client, userdata, mid, reason_code=None, properties=None):
         try:
             userdata.remove(mid)
         except KeyError:
