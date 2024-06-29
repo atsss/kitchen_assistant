@@ -77,20 +77,21 @@ class MQTTClient(object):
         self._connected = False
 
     def _on_publish(self, client, userdata, mid, reason_code=None, properties=None):
-        try:
-            userdata.remove(mid)
-        except KeyError:
-            logger.error("on_publish() is called with a mid not present in unacked_publish")
-            logger.error("This is due to an unavoidable race-condition:")
-            logger.error("* publish() return the mid of the message sent.")
-            logger.error("* mid from publish() is added to unacked_publish by the main thread")
-            logger.error("* on_publish() is called by the loop_start thread")
-            logger.error("While unlikely (because on_publish() will be called after a network round-trip),")
-            logger.error(" this is a race-condition that COULD happen")
-            logger.error("")
-            logger.error("The best solution to avoid race-condition is using the msg_info from publish()")
-            logger.error("We could also try using a list of acknowledged mid rather than removing from pending list,")
-            logger.error("but remember that mid could be re-used !")
+        logger.debug(f'in on_publish, {userdata}, {mid}')
+        # try:
+        #     userdata.remove(mid)
+        # except KeyError:
+        #     logger.error("on_publish() is called with a mid not present in unacked_publish")
+        #     logger.error("This is due to an unavoidable race-condition:")
+        #     logger.error("* publish() return the mid of the message sent.")
+        #     logger.error("* mid from publish() is added to unacked_publish by the main thread")
+        #     logger.error("* on_publish() is called by the loop_start thread")
+        #     logger.error("While unlikely (because on_publish() will be called after a network round-trip),")
+        #     logger.error(" this is a race-condition that COULD happen")
+        #     logger.error("")
+        #     logger.error("The best solution to avoid race-condition is using the msg_info from publish()")
+        #     logger.error("We could also try using a list of acknowledged mid rather than removing from pending list,")
+        #     logger.error("but remember that mid could be re-used !")
 
     def _on_subscribe(self, client, userdata, mid, granted_qos, properties=None):
         logger.debug(f"Device subscribed: mid:{str(mid)}, QoS:{'.'.join([str(s1) for s1 in granted_qos])}")
