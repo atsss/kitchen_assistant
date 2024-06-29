@@ -45,6 +45,7 @@ class MQTTClient(object):
                 rc = self._client.connect(self._address, self._port, keepalive=60)
             else:
                 self._client.reconnect()
+            self._client.enable_logger()
             return True, {}
         except (ConnectionRefusedError, socket.gaierror) as err:
             logger.warning(f"Can't connect device to message broker: {err}")
