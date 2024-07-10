@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from classes.tts import TTS
+from .classes.tts import TTS
 
 app = FastAPI()
 tts_client = TTS()
