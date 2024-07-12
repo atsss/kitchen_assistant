@@ -14,4 +14,4 @@ def root(message: str):
     tts_client.start()
     tts_client.speak(message)
     # FIXME: Locate right before sever stops
-    tts_clinent.stop()
+    tts_client.stop()
