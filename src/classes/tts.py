@@ -9,7 +9,6 @@ class TTS:
     CONFIG_PATH = os.path.join(PARENT_DIR, 'models', 'en_US-lessac-medium.onnx.json')
 
     def __init__(self) -> None:
-        logger.debug(self.PARENT_DIR, self.MODEL_PATH, self.CONFIG_PATH)
         self.piper = PiperVoice.load(self.MODEL_PATH, config_path=self.CONFIG_PATH)
         self.audio = pyaudio.PyAudio()
         self.stream = None
