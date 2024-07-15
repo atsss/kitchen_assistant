@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, status
 from pydantic import BaseModel
 from .classes.tts import TTS
 
@@ -19,3 +19,4 @@ def root(message: Message):
     tts_client.speak(message.content)
     # FIXME: Locate right before sever stops
     tts_client.stop()
+    return Response(status_code=status.HTTP_200_OK)
