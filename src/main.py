@@ -13,10 +13,15 @@ def root():
     return {"message": "Hello World"}
 
 @app.post("/speak")
-def root(message: Message):
-    # FIXME: Locate right after server starts
+def speak(message: Message):
     tts_client.start()
     tts_client.speak(message.content)
-    # FIXME: Locate right before sever stops
     tts_client.stop()
+    return Response(status_code=status.HTTP_200_OK)
+
+@app.post("/slack")
+def slack():
+    # tts_client.start()
+    # tts_client.speak(message.content)
+    # tts_client.stop()
     return Response(status_code=status.HTTP_200_OK)
