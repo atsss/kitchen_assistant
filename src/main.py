@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Response, status
 from pydantic import BaseModel
 from loguru import logger
+from typing import Union, Any
 from .classes.tts import TTS
 
 class Message(BaseModel):
@@ -37,7 +38,7 @@ def speak(message: Message):
     return Response(status_code=status.HTTP_200_OK)
 
 @app.post("/slack")
-def slack(message: SlackSubscripion):
+def slack(message: Union[SlackSubscripion, Any]):
     # tts_client.start()
     # tts_client.speak(message.content)
     # tts_client.stop()
@@ -45,5 +46,5 @@ def slack(message: SlackSubscripion):
     if message.type == 'url_verification':
         logger.info('In verification')
         return message.challenge
-    logger.info('Here')
+    logger.info('Here', message)
     return Response(status_code=status.HTTP_200_OK)
