@@ -6,6 +6,11 @@ from .classes.tts import TTS
 class Message(BaseModel):
     content: str
 
+class SlackSubscripion(BaseModel):
+    token: str
+    challenge: str
+    type: str
+
 app = FastAPI()
 tts_client = TTS()
 
@@ -32,8 +37,13 @@ def speak(message: Message):
     return Response(status_code=status.HTTP_200_OK)
 
 @app.post("/slack")
-def slack():
+def slack(message: SlackSubscripion):
     # tts_client.start()
     # tts_client.speak(message.content)
     # tts_client.stop()
+    logger.info('Detected slack message')
+    if message.type == 'url_verification':
+        logger.info('In verification')
+        return message.challenge
+    logger.info('Here')
     return Response(status_code=status.HTTP_200_OK)
