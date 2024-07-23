@@ -43,8 +43,8 @@ def slack(message: Union[SlackSubscripion, Any]):
     # tts_client.speak(message.content)
     # tts_client.stop()
     logger.info('Detected slack message')
-    if message.type == 'url_verification':
+    if message.get('type', None) == 'url_verification':
         logger.info('In verification')
         return message.challenge
-    logger.info('Here', message)
+    logger.info('Here', message.get('event', {}).get('text', None))
     return Response(status_code=status.HTTP_200_OK)
