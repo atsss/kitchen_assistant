@@ -9,7 +9,7 @@ class Message(BaseModel):
 
 class SlackSubscripion(BaseModel):
     token: str
-    challenge: str
+    challenge: Optional[str]
     type: str
     event: Optional[dict]
 
