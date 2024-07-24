@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from loguru import logger
 from typing import Dict, Any
 from .classes.tts import TTS
+import re
 
 class Message(BaseModel):
     content: str
@@ -34,12 +35,19 @@ def speak(message: Message):
 
 @app.post("/slack")
 def slack(message: Dict[Any, Any]):
-    # tts_client.start()
-    # tts_client.speak(message.content)
-    # tts_client.stop()
     logger.info('Detected slack message')
     if message.get('type', None) == 'url_verification':
         logger.info('In verification')
         return message.get('challenge', None)
-    logger.info('Slack text', message.get('event', {}).get('text', None))
+
+    text = message.get('event', {}).get('text', None)
+    logger.info(f"Slack text {text}")
+    if text is not None:
+        content = re.sub(r'<@U07DG05L1UY>\s*', '', text)
+        logger.info(f"Content to speack {content}")
+
+        tts_client.start()
+        tts_client.speak(content)
+        tts_client.stop()
+
     return Response(status_code=status.HTTP_200_OK)
